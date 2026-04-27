@@ -105,8 +105,11 @@ button {
         <button id="no-button">No</button>
     </div>
 
+    <!-- UPDATED MESSAGE WITH GIF -->
     <div class="message">
         <h2>Yessss!! 💍❤️</h2>
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXh0bTFqcmgzaGN4YnJrZDY0c21yaTY5N21wMDJ3ZzBqcGg4YXUxeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3og0IQ29pE7zRwbh60/giphy.gif" 
+             style="width:250px; margin-top:20px; border-radius:12px;">
     </div>
 
 </div>
@@ -135,13 +138,13 @@ let size = 100;
 no_button.addEventListener('click', () => {
 
     // 🔥 TRUE INFINITE GROWTH
-    const growth = Math.random() * 30 + 20; // random growth
+    const growth = Math.random() * 30 + 20;
     size += growth;
 
     yes_button.style.width = size + "px";
     yes_button.style.height = size + "px";
 
-    // text cycles forever (no reset of size)
+    // text cycles forever
     no_button.innerText = answers_no[i % answers_no.length];
     i++;
 });

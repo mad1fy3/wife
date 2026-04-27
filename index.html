@@ -134,23 +134,16 @@ let size = 100;
 /* NO BUTTON */
 no_button.addEventListener('click', () => {
 
-    // Grow YES button
-    const sizes = [20, 30, 25, 35];
-    size += sizes[Math.floor(Math.random() * sizes.length)];
+    // 🔥 TRUE INFINITE GROWTH
+    const growth = Math.random() * 30 + 20; // random growth
+    size += growth;
+
     yes_button.style.width = size + "px";
     yes_button.style.height = size + "px";
 
-    // Change NO text
-    if (i < answers_no.length) {
-        no_button.innerText = answers_no[i];
-        i++;
-    } else {
-        no_button.innerText = answers_no[0];
-        i = 1;
-        size = 100;
-        yes_button.style.width = "100px";
-        yes_button.style.height = "50px";
-    }
+    // text cycles forever (no reset of size)
+    no_button.innerText = answers_no[i % answers_no.length];
+    i++;
 });
 
 /* YES BUTTON */

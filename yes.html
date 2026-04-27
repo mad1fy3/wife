@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yay!</title>
+<style>
+body {
+  background:white;
+  font-family:Arial,sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  margin:0;
+  padding:20px;
+  text-align:center;
+}
+h1 { color:green; }
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 LUCKY SONG (ADDED) -->
+<audio id="luckySong" autoplay loop>
+  <source src="https://www.myinstants.com/media/sounds/im-so-lucky-lucky.mp3" type="audio/mpeg">
+</audio>
+
+<img
+  id="banner"
+  src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ290cm9qaTA2bXJxNWV0b2htN2pwYjNjaTQxYTBjMW14Y2diOWRncyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dnEdk09qJftEJv8YMC/giphy.gif"
+  alt="banner"
+/>
+
+<h1>Yipppie, you said YES! 😍</h1>
+<p>SAHOURAAAAA</p>
+
+<script>
+const pressedYes = localStorage.getItem('pressedYes');
+
+if (pressedYes !== 'true') {
+  alert("Wait... You didn't press Yes from the main page!");
+  window.location.href = 'index.html';
+} else {
+  console.log("Yes was pressed! 🥳");
+  // optional:
+  // localStorage.removeItem('pressedYes');
+}
+</script>
+
+</body>
+</html>

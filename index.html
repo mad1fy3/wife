@@ -31,6 +31,13 @@ body {
     flex-direction: column;
     margin-top: 50px;
     text-align: center;
+
+    /* ✨ NEW UPGRADE */
+    background: rgba(0, 0, 0, 0.75);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
 }
 
 /* 💍 Ring Icon (PURE CSS) */
@@ -46,14 +53,19 @@ body {
 .ring::before {
     content: '';
     position: absolute;
-    top: -25px;
+    top: -22px;
     left: 50%;
     transform: translateX(-50%);
     width: 25px;
     height: 25px;
     background: cyan;
     border-radius: 50%;
-    box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+
+    /* ✨ stronger glow */
+    box-shadow:
+        0 0 10px cyan,
+        0 0 20px cyan,
+        0 0 35px cyan;
 }
 
 /* Buttons */
@@ -91,6 +103,15 @@ button {
     display: none;
     margin-top: 20px;
 }
+
+h1, h2, p, button {
+    text-shadow:
+        -2px -2px 0 #000,
+         2px -2px 0 #000,
+        -2px  2px 0 #000,
+         2px  2px 0 #000;
+}
+    
 </style>
 </head>
 

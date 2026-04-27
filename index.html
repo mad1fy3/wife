@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Valentine Question</title>
+<title>Will You Marry Me?</title>
 
 <style>
 body {
-    background-color: white;
+    background-color: black;
+    color: white;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -17,192 +18,148 @@ body {
     flex-direction: column;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    flex-direction: row;
-    align-items: end;
-    flex-wrap: wrap;
-}
-
-#no-button {
-    margin: 0 10px;
-    color: white;
-    background-color: red;
-    height: 40px !important;
-    width: auto;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-#yes-button {
-    margin: 0 10px;
-    color: white;
-    border: none;
-    background-color: green;
-    cursor: pointer;
-    height: 40px;
-}
-
+/* Container */
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 20px;
-    padding: 20px;
+    margin-top: 50px;
     text-align: center;
 }
 
-.message {
-    display: none;
+/* 💍 Ring Icon (PURE CSS) */
+.ring {
+    width: 80px;
+    height: 80px;
+    border: 6px solid gold;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 20px;
 }
 
-.banner-gif img {
-    height: 250px;
+.ring::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 25px;
+    background: cyan;
+    border-radius: 50%;
+    box-shadow: 0 0 10px cyan, 0 0 20px cyan;
 }
 
-/* INTRO SCREEN */
-#intro-screen {
-    position: fixed;
-    inset: 0;
-    background: black;
-    z-index: 9999;
+/* Buttons */
+.buttons {
     display: flex;
     justify-content: center;
-    align-items: center;
-    transition: opacity 1.2s ease;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
-#intro-screen.fade-out {
-    opacity: 0;
-    pointer-events: none;
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+#yes-button {
+    background-color: green;
+    color: white;
+    height: 50px;
+    width: 100px;
+}
+
+#no-button {
+    background-color: red;
+    color: white;
+    height: 50px;
+}
+
+/* Message */
+.message {
+    display: none;
+    margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro-screen">
-    <iframe
-        width="110"
-        height="200"
-        src="https://www.myinstants.com/instant/im-so-lucky-lucky-98870/embed/"
-        frameborder="0"
-        scrolling="no">
-    </iframe>
-</div>
-
-<!-- AUDIO (ADDED, CONTROLLED) -->
-<audio id="happySong">
-    <source src="https://www.myinstants.com/media/sounds/im-so-lucky-lucky.mp3">
-</audio>
-
-<audio id="sadSong">
-    <source src="https://www.myinstants.com/media/sounds/sad-hamster.mp3">
-</audio>
-
-<!-- ORIGINAL CONTENT -->
 <div class="container">
-  <div class="banner-gif">
-    <img id="banner" src="https://i.postimg.cc/JhNSZgvW/Screenshot-20260208-112615-display-0-png.png">
-  </div>
 
-  <h1 id="question-heading">Will you be my valentine?</h1>
+    <!-- 💍 Ring -->
+    <div class="ring"></div>
 
-  <div class="buttons">
-    <button id="yes-button"><p>Yes</p></button>
-    <button id="no-button"><p>No</p></button>
-  </div>
+    <!-- Question -->
+    <h1 id="question-heading">Will you marry me?</h1>
 
-  <div class="message">
-    <h2>Yepppie, see you sooonnn :3</h2>
-  </div>
+    <!-- Buttons -->
+    <div class="buttons">
+        <button id="yes-button">Yes</button>
+        <button id="no-button">No</button>
+    </div>
+
+    <div class="message">
+        <h2>Yessss!! 💍❤️</h2>
+    </div>
+
 </div>
 
 <script>
-/* ===== ORIGINAL DATA ===== */
 const answers_no = [
-    "No","Are you sure?","Are you really sure??","Are you really realy sure???",
-    "Think again?","Don't believe in second chances?","Why are you being so cold?",
-    "Maybe we can talk about it?","I am not going to ask again!",
-    "Ok now this is hurting my feelings!","You are now just being mean!",
-    "Why are you doing this to me?","Please give me a chance!",
-    "I am begging you to stop!","Ok, Let's just start over.."
+    "No",
+    "Are you sure?",
+    "Think again?",
+    "Come on 😭",
+    "Don't do this...",
+    "Please?",
+    "Last chance...",
+    "You're breaking my heart 💔",
+    "Okay this hurts...",
+    "Why 😭"
 ];
 
 const no_button = document.getElementById('no-button');
 const yes_button = document.getElementById('yes-button');
-const banner = document.getElementById('banner');
 
 let i = 1;
-let size = 50;
-let clicks = 0;
+let size = 100;
 
-/* ===== INTRO CLICK ===== */
-const intro = document.getElementById('intro-screen');
-const happySong = document.getElementById('happySong');
-const sadSong = document.getElementById('sadSong');
-
-intro.addEventListener('click', () => {
-    happySong.play();
-    intro.classList.add('fade-out');
-    setTimeout(() => intro.remove(), 1200);
-}, { once: true });
-
-/* ===== NO BUTTON (RESTORED OLD GROWTH) ===== */
+/* NO BUTTON */
 no_button.addEventListener('click', () => {
 
-    // switch music
-    happySong.pause();
-    happySong.currentTime = 0;
-    sadSong.currentTime = 0;
-    sadSong.play();
-
-    // first click banner change (ORIGINAL)
-    if (clicks === 0) {
-        banner.src = "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzdoN3A2YTdiOXUzcXFobG93aWVhZjR5Y2QzNW4xM3oycDRjcjAyaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/mi4ec226vjAkehSLk0/giphy.gif";
-        refreshBanner();
-    }
-    clicks++;
-
-    // YES BUTTON GROWS (OLD LOGIC)
-    const sizes = [40, 50, 30, 35, 45];
+    // Grow YES button
+    const sizes = [20, 30, 25, 35];
     size += sizes[Math.floor(Math.random() * sizes.length)];
-    yes_button.style.height = `${size}px`;
-    yes_button.style.width = `${size}px`;
+    yes_button.style.width = size + "px";
+    yes_button.style.height = size + "px";
 
-    // NO TEXT LOGIC (ORIGINAL)
-    if (i < answers_no.length - 1) {
-        no_button.innerHTML = answers_no[i];
+    // Change NO text
+    if (i < answers_no.length) {
+        no_button.innerText = answers_no[i];
         i++;
     } else {
-        alert(answers_no[i]);
+        no_button.innerText = answers_no[0];
         i = 1;
-        no_button.innerHTML = answers_no[0];
+        size = 100;
+        yes_button.style.width = "100px";
         yes_button.style.height = "50px";
-        yes_button.style.width = "50px";
-        size = 50;
     }
 });
 
-/* ===== YES BUTTON ===== */
+/* YES BUTTON */
 yes_button.addEventListener('click', () => {
-    localStorage.setItem('pressedYes', 'true');
-    window.location.href = 'yes.html';
+    document.querySelector('.message').style.display = 'block';
+    document.querySelector('.buttons').style.display = 'none';
+    document.getElementById('question-heading').innerText = "She said YES 💍❤️";
 });
-
-/* ===== BANNER REFRESH ===== */
-function refreshBanner() {
-    let src = banner.src;
-    banner.src = '';
-    banner.src = src;
-}
 </script>
 
 </body>
 </html>
-
